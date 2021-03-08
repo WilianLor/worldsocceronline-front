@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    font-family: Roboto, sans-serif;
+}
+
+.MuiButton-root {
+    min-width: 48px !important;
+}
+
+@media (max-width: 1080px) {
+    html {
+        font-size: 93.75%;
+    }
+}
+
+@media (max-width: 720px) {
+    html {
+        font-size: 87.5%;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 81.25%;
+    }
+}
+
