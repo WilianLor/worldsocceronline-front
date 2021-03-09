@@ -434,12 +434,12 @@ const ErrorOption = styled.h1`
 `
 
 const ActionButton = styled.button`
-    margin-top: 20px;
+    margin-top: 1.25rem;
     color: #E1E1E6;
     background-color: #04D361;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 15px;
+    padding: 0.625rem;
+    border-radius: .5rem;
+    font-size: .9375rem;
     font-weight: 600;
     transition: .4s;
     cursor: pointer;
@@ -456,14 +456,14 @@ const GoBackContent = styled.div`
 `
 
 const ButtonGoBack = styled.button`
-    border-radius: 8px;
+    border-radius: .5rem;
     background-color: #202024;
     color: #E1E1E6;
-    margin-top: 20px;
-    margin-left: 10px;
-    padding: 10px;
+    margin-left: 0.625rem;
+    padding: 0.625rem;
     transition: .4s ease 0s;
     cursor: pointer;
+    margin-bottom: -1rem;
 `
 
 const TeamInformations = styled.div`
@@ -474,21 +474,27 @@ const TeamInformations = styled.div`
     justify-content: center;
     align-items: center;
     background-color: #202024;
-    border-radius: 8px;
+    border-radius: .5rem;
+
+    @media (max-width: 720px) {
+        & {
+            width: 95%;
+        }
+    }
 `
 
 const TeamImage = styled.img`
-    width: 125px;
-    margin-bottom: 10px;
+    width: 7.8125rem;
+    margin-bottom: 0.625rem;
     background-color: #121214;
     border-radius: 25%;
-    padding: 10px;
+    padding: 0.625rem;
 `
 
 const TeamName = styled.h2`
     color: #E1E1E6;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     font-weight: 500;
 `
 
@@ -497,26 +503,33 @@ const ProfessionLabel = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 500;
 `
 
 const ProfessionName = styled.h3`
     color: #E1E1E6;
-    margin-left: 10px;
+    margin-left: 0.625rem;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.125rem;
 `
 
 const TeamPlayers = styled.div`
     height: 100%;
     background-color: #202024;
     width: 36%;
-    border-radius: 8px;
+    border-radius: .5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+
+    @media (max-width: 720px) {
+        & {
+            width: 95%;
+            margin-top: 1rem;
+        }
+    }
 `
 
 const TeamPlayersTitle = styled.h2`
@@ -528,7 +541,7 @@ const ShowPlayers = styled.div`
     width: 90%;
     height: 80%;
     background-color: #121214;
-    border-radius: 4px;
+    border-radius: .25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -540,7 +553,7 @@ const PlayersHeader = styled.div`
     flex-direction: row;
     align-items: center;
     width: 95%;
-    margin-top: 10px;
+    margin-top: 0.625rem;
     color: #04D361;
 `
 
@@ -562,19 +575,19 @@ const PLayersList = styled.div`
     display: flex;
     flex-direction: column;
     width: 95%;
-    margin-top: 10px;
+    margin-top: 0.625rem;
     overflow-y: scroll;
 
     ::-webkit-scrollbar-track {
         background-color: #121214;
     }
     ::-webkit-scrollbar {
-        width: 4px;
+        width: .25rem;
         background: #F4F4F4;
     }
     ::-webkit-scrollbar-thumb {
         background: #04D361;
-        border-radius: 4px;
+        border-radius: .25rem;
     }
 `
 
@@ -585,13 +598,13 @@ const Players = styled.div`
 `
 
 const VerticalDivider = styled.span`
-    width: 1px;
+    width: 0.0625rem;
     height: 100%;
     background-color: #202024;
 `
 
 const PlayersName = styled.h4`
-    margin-right: 10px;
+    margin-right: 0.625rem;
     width: 45%;
 `
 
@@ -601,13 +614,13 @@ const PlayersAge = styled.h4`
 `
 
 const PlayersOvr = styled.h4`
-    margin-right: 10px;
+    margin-right: 0.625rem;
     width: 13%;
     text-align: center;
 `
 
 const PlayersPosition = styled.h4`
-    margin-right: 10px;
+    margin-right: 0.625rem;
     width: 15%;
     text-align: center;
 `
@@ -616,16 +629,23 @@ const TeamCompetitions = styled.div`
     height: 100%;
     width: 36%;
     background-color: #202024;
-    border-radius: 8px;
+    border-radius: .5rem;
     text-align: center;
+
+    @media (max-width: 720px) {
+        & {
+            width: 95%;
+            margin-top: 1rem;
+        }
+    }
 `
 
 const TeamCompetitionTitle = styled.h2`
     color: #E1E1E6;
     font-weight: 500;
     width: 90%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
 `
 
 const Competition = styled.div`
@@ -633,15 +653,16 @@ const Competition = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 `
 
 const CompetitionImage = styled.img`
-    width: 80px;
+    height: 5rem;
+    width: 5rem;
     background-color: #121214;
-    padding: 10px;
+    padding: 0.625rem;
     border-radius: 50%;
-    margin-right: 30px;
+    margin-right: 1.875rem;
 `
 
 const CompetitionInfo = styled.div`
@@ -672,30 +693,33 @@ const TeamInfoPage = styled.div`
 `
 
 const TeamInfoHeader = styled.div`
-    height: 22vh;
+    height: auto;
     width: 100%;
-    border-radius: 4px;
+    border-radius: .25rem;
     background-color: #04D361;
     color: #E1E1E6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
 
 const HeaderTeamInfoTitle = styled.h1`
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    margin-left: 1.25rem;
+    margin-top: 1.25rem;
+    margin-right: 1.25rem;
+    margin-bottom: 0.625rem;
 `
 
 const HeaderTeamInfoText = styled.p`
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    margin-bottom: 0.625rem;
 `
 
 const TeamInfoContent = styled.div`
     height: 55vh;
     width: 100%;
-    border-radius: 4px;
+    border-radius: .25rem;
     background-color: transparent;
     color: #E1E1E6;
     display: flex;
@@ -703,6 +727,14 @@ const TeamInfoContent = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 1.5rem;
+
+    @media (max-width: 720px) {
+        & {
+            padding-left: 3%;
+            margin-bottom: 1rem;
+        }
+    }
 `
 
 const ChoiseLeaguePage = styled.div`
@@ -714,34 +746,37 @@ const ChoiseLeaguePage = styled.div`
     align-items: center;
     background-color: transparent;
     justify-content: space-between;
-    height: 80vh;
+    height: auto;
 `
 
 const ChoiseLeagueHeader = styled.div`
-    height: 22vh;
+    height: auto;
     width: 100%;
-    border-radius: 4px;
+    border-radius: .25rem;
     background-color: #04D361;
     color: #E1E1E6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
 
 const HeaderLeagueTitle = styled.h1`
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    margin-top: 1.25rem;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    margin-bottom: 0.625rem;
 `
 
 const HeaderLeagueText = styled.p`
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    margin-bottom: 0.625rem;
 `
 
 const ChoiseLeagueOptions = styled.div`
-    height: 55vh;
+    min-height: 55vh;
     width: 100%;
-    border-radius: 4px;
+    border-radius: .25rem;
     background-color: #202024;
     color: #E1E1E6;
     display: flex;
@@ -749,13 +784,15 @@ const ChoiseLeagueOptions = styled.div`
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 `
 
 const OptionLeague = styled.button`
     width: 48%;
     height: 96%;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: .5rem;
     color: #E1E1E6;
     transition: .4s ease 0s;
     cursor: pointer;
@@ -763,26 +800,39 @@ const OptionLeague = styled.button`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid #121214;
+    border-bottom: .125rem solid #121214;
     background-color: transparent;
+
+    @media (max-width: 720px) {
+        & {
+            margin-top: 1rem;
+            width: 92%; 
+        }
+    }
 
     &:hover {
         background-color: #121214;
-        border-radius: 8px;
+        border-radius: .5rem;
     }
 `
 
 const OptionLeagueName = styled.h2`
-    font-size: 18px;
+    font-size: 1.125rem;
     text-align: center;
     font-weight: 400;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 `
 
 const OptionImageLeague = styled.img`
-    width: 40%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    height: 16rem;
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
+
+    @media (max-width: 720px) {
+        & {
+            height: 10rem;
+        }
+    }
 `
 
 const ChoiseTeamRegionPage = styled.div`
@@ -794,47 +844,56 @@ const ChoiseTeamRegionPage = styled.div`
     align-items: center;
     background-color: transparent;
     justify-content: space-between;
-    height: 80vh;
+    height: auto;
 `
 
 const ChoiseRegionHeader = styled.div`
-    height: 22vh;
+    height: auto;
     width: 100%;
-    border-radius: 4px;
+    border-radius: .25rem;
     background-color: #04D361;
     color: #E1E1E6;
 `
 
 const HeaderRegionTitle = styled.h1`
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    margin-left: 1.25rem;
+    margin-top: 1.25rem;
+    margin-right: 1.25rem;
+    margin-bottom: 0.625rem;
 `
 
 const HeaderRegionText = styled.p`
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    margin-bottom: 1.25rem;
 `
 
 const ChoiseRegionOptions = styled.div`
-    height: 55vh;
+    height: auto;
     width: 100%;
-    border-radius: 4px;
+    border-radius: .25rem;
     background-color: #202024;
     color: #E1E1E6;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    @media (max-width: 720px) {
+        & {
+            flex-direction: column;
+        }
+    }
 `
 
 const OptionRegion = styled.button`
     width: 15vw;
-    height: 50vh;
+    height: 21rem;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: .5rem;
     color: #E1E1E6;
     transition: .4s ease 0s;
     cursor: pointer;
@@ -842,25 +901,32 @@ const OptionRegion = styled.button`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid #121214;
+    border-bottom: .125rem solid #121214;
     background-color: transparent;
+
+    @media (max-width: 720px) {
+        & {
+            margin-bottom: 1rem;
+            width: 90%;
+        }
+    }
 
     &:hover {
         background-color:#121214;
-        border-radius: 8px;
+        border-radius: .5rem;
     }
 `
 
 const OptionRegionName = styled.h2`
-    font-size: 18px;
+    font-size: 1.125rem;
     text-align: center;
     font-weight: 400;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 `
 
 const OptionImageRegion = styled.img`
-    width: 14vw;
-    margin-top: 30px;
+    width: 12rem;
+    margin-top: 1.875rem;
 `
 
 const ChoiseTeamCountryPage = styled.div`
@@ -872,34 +938,37 @@ const ChoiseTeamCountryPage = styled.div`
     align-items: center;
     background-color: transparent;
     justify-content: space-between;
-    height: 80vh;
+    height: auto;
 `
 
 const ChoiseCountryHeader = styled.div`
-    height: 22vh;
+    height: auto;
     width: 100%;
-    border-radius: 4px;
+    border-radius: .25rem;
     background-color: #04D361;
     color: #E1E1E6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
 
 const HeaderCountryTitle = styled.h1`
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    margin-left: 1.25rem;
+    margin-top: 1.25rem;
+    margin-right: 1.25rem;
+    margin-bottom: 0.625rem;
 `
 
 const HeaderCountryText = styled.p`
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    margin-bottom: 0.625rem;
 `
 
 const ChoiseCountryOptions = styled.div`
-    height: 55vh;
+    min-height: 55vh;
     width: 100%;
-    border-radius: 4px;
+    border-radius: .25rem;
     background-color: #202024;
     color: #E1E1E6;
     display: flex;
@@ -907,13 +976,16 @@ const ChoiseCountryOptions = styled.div`
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 `
 
 const OptionCountry = styled.button`
-    width: 8.5vw;
+    width: 11rem;
     height: 22vh;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: .5rem;
     color: #E1E1E6;
     transition: .4s ease 0s;
     cursor: pointer;
@@ -921,26 +993,27 @@ const OptionCountry = styled.button`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid #121214;
+    border-bottom: .125rem solid #121214;
     background-color: transparent;
+    margin-bottom: 1rem;
 
     &:hover {
         background-color: #121214;
-        border-radius: 8px;
+        border-radius: .5rem;
     }
 `
 
 const OptionCountryName = styled.h2`
-    font-size: 18px;
+    font-size: 1.125rem;
     text-align: center;
     font-weight: 400;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 `
 
 const OptionImageCountry = styled.img`
-    width: 6vw;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    width: 5rem;
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
 `
 
 const ChoiseTeamPage = styled.div`
@@ -952,34 +1025,37 @@ const ChoiseTeamPage = styled.div`
     align-items: center;
     background-color: transparent;
     justify-content: space-between;
-    height: 80vh;
+    height: auto;
 `
 
 const ChoiseHeader = styled.div`
-    height: 22vh;
+    height: auto;
     width: 100%;
-    border-radius: 4px;
+    border-radius: .25rem;
     background-color: #04D361;
     color: #E1E1E6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
 
 const HeaderTitle = styled.h1`
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    margin-left: 1.25rem;
+    margin-top: 1.25rem;
+    margin-right: 1.25rem;
+    margin-bottom: 0.625rem;
 `
 
 const HeaderText = styled.p`
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    margin-bottom: 0.625rem;
 `
 
 const ChoiseOptions = styled.div`
-    height: 55vh;
+    min-height: 55vh;
     width: 100%;
-    border-radius: 4px;
+    border-radius: .25rem;
     background-color: #202024;
     color: #E1E1E6;
     display: flex;
@@ -987,40 +1063,44 @@ const ChoiseOptions = styled.div`
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 `
 
 const Option = styled.button`
-    width: 9vw;
+    width: 11rem;
     height: 22vh;
     text-decoration: none;
-    border-radius: 4px;
-    transition: .4s ease 0s;
+    border-radius: .5rem;
     color: #E1E1E6;
+    transition: .4s ease 0s;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; 
-    border-bottom: 2px solid #121214;
+    justify-content: space-between;
+    border-bottom: .125rem solid #121214;
     background-color: transparent;
+    margin-bottom: 1rem;
 
     &:hover {
         background-color: #121214;
-        border-radius: 8px;
+        border-radius: .5rem;
     }
 `
 
 const OptionName = styled.h2`
-    font-size: 18px;
+    font-size: 1.125rem;
     text-align: center;
     font-weight: 400;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 `
 
 const OptionImage = styled.img`
-    width: 6vw;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    width: 5rem;
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
 `
 
 export default ChoiseTeam;
