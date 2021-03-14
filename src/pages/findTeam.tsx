@@ -16,7 +16,9 @@ import Oceania from '../images/oceania.svg'
 
 interface Info {
     profession: string, 
-    teamId: string
+    teamId: string,
+    professionId: string,
+    token: string
 }
 
 interface region {
@@ -54,6 +56,11 @@ interface player {
     age: number
 }
 
+interface interest {
+    _id: string,
+    coachId: string
+}
+
 const ChoiseTeam: React.FC = () => {
 
     const [activePage, setActivePage] = useState('Region')
@@ -68,6 +75,8 @@ const ChoiseTeam: React.FC = () => {
     const [Teams, setTeams] = useState([])
     const [TeamInfo, setTeamInfo] = useState({_id: "", name: "", pictureUrl: "", presidentName: "", coachName: "", players: [], nacionalCompetition: {_id: "", name: "", pictureUrl: "", state: ""}, regionalCompetition: {_id: "", name: "", pictureUrl: "", state: ""}})
 
+    const [interestedCoaches, setInterestedCoaches] = useState<Array<interest>>([])
+
     useEffect(() => {   
         if(Regions.length < 1){
             axios.get(config.baseUrl + '/getregions').then((response: AxiosResponse) => {
@@ -78,7 +87,7 @@ const ChoiseTeam: React.FC = () => {
         }
     })
 
-    const infos = useSelector<UserState, Info>(state => ({profession: state.profession, teamId: state.user.teamId}))
+    const infos = useSelector<UserState, Info>(state => ({profession: state.profession, teamId: state.user.teamId, professionId: state.user.professionId, token: state.token}))
 
     const selectRegion = (region: {_id: string, name: string}) => {
         setRegion(region)
@@ -119,10 +128,62 @@ const ChoiseTeam: React.FC = () => {
 
         axios.get(config.baseUrl + '/teaminfo/'+team._id).then((response: AxiosResponse) => {
             setTeamInfo(response.data.teamData)
+            setInterestedCoaches(response.data.teamData.interestedCoaches)
             setActivePage('TeamInfo')
         }).catch(err => {
             console.log(err)
         })
+    }
+
+    const showInterest = () => {
+        const header = {
+            headers: {'authorization': 'Bearer '+infos.token}
+        }
+      
+        axios.post(config.baseUrl + '/showinterest',  {teamId: TeamInfo._id}, header).then((response: AxiosResponse) => {
+            setInterestedCoaches([{_id: 'id', coachId: infos.professionId}])
+        }).catch(e => {
+            console.log('erro'+e)
+        })
+    }
+
+    const removeInterest = () => {
+        const header = {
+            headers: {'authorization': 'Bearer '+infos.token}
+        }
+      
+        axios.post(config.baseUrl + '/removeinterest',  {teamId: TeamInfo._id}, header).then((response: AxiosResponse) => {
+            setInterestedCoaches([])
+        }).catch(e => {
+            console.log('erro'+e)
+        })
+    }
+
+    const joinTeam = () => {
+        
+    }
+ 
+    const Button: React.FC = () => {
+        if(infos.profession === 'Coach') {
+            if(infos.teamId === TeamInfo._id){
+                return <> </>
+            } else {
+                let isInterested = false
+                interestedCoaches.map((interest: interest) => interest.coachId === infos.professionId ? isInterested = true : '')
+                
+                if(isInterested){
+                    return <ActionButton onClick={removeInterest}>REMOVER INTERESSE</ActionButton>
+                } else {
+                    return <ActionButton onClick={showInterest}>DEMONSTRAR INTERESSE</ActionButton> 
+                }
+            }
+        } else {
+            if (infos.teamId === TeamInfo._id) {
+                return <> </>
+            }else {
+                return <ActionButton onClick={joinTeam}>INICIAR MANDATO</ActionButton>
+            }
+        }
     }
 
     const getPosition = (position: any) => {
@@ -314,10 +375,7 @@ const ChoiseTeam: React.FC = () => {
                         <ProfessionLabel>
                             Técnico: <ProfessionName>{TeamInfo.coachName}</ProfessionName>
                         </ProfessionLabel>
-                        {infos.profession === 'Coach' ? 
-                        infos.teamId === TeamInfo._id ? '' :
-                        <ActionButton onClick={() => {console.log('work')}}>DEMONSTRAR INTERESSE</ActionButton>
-                        : infos.teamId === TeamInfo._id ? '' : <ActionButton onClick={() => {console.log('work')}}>INICIAR MANDATO</ActionButton>}
+                        <Button />
                     </TeamInformations>
                     <TeamPlayers>
                         <TeamPlayersTitle>Jogadores deste time:</TeamPlayersTitle>
@@ -418,9 +476,9 @@ const ChoiseTeam: React.FC = () => {
     document.body.style.backgroundColor ="#121214"  
     return (
     <Body>
-        <NavBar></NavBar>
+        <NavBar />
         {activeComponent()}
-        </Body>
+    </Body>
   );
 }
 
@@ -717,7 +775,7 @@ const HeaderTeamInfoText = styled.p`
 `
 
 const TeamInfoContent = styled.div`
-    height: 55vh;
+    min-height: 55vh;   
     width: 100%;
     border-radius: .25rem;
     background-color: transparent;
@@ -869,7 +927,7 @@ const HeaderRegionText = styled.p`
 `
 
 const ChoiseRegionOptions = styled.div`
-    height: auto;
+    min-height: 55vh;
     width: 100%;
     border-radius: .25rem;
     background-color: #202024;

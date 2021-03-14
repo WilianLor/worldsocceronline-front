@@ -13,6 +13,7 @@ import Choise from './pages/choise'
 import FindTeam from './pages/findTeam'
 import CoachHome from './pages/coachHome'
 import PresidentHome from './pages/presidentHome'
+import FindCoach from './pages/findcoach'
 
 interface Infos {
     isLogged: boolean,
@@ -33,6 +34,7 @@ function Routes() {
                 <Route path="/singup" exact render={() => <Singup />}/>
                 <Route path="/choise" exact render={() => isNotProfession(<Choise />, <FindTeam />, infos)}/>
                 <Route path="/findteam" exact render={() => <FindTeam />}/>
+                <Route path="/findcoach" exact render={() => <FindCoach />}/>
                 <Route path="/home" exact render={() => coachOrPresident(<CoachHome />, <PresidentHome />, <FindTeam />, <Choise />, <Landing />, infos)}/>
             </Switch>
         </BrowserRouter>

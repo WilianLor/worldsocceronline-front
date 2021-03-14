@@ -132,9 +132,11 @@ const Singup: React.FC = () => {
         const User = {
             email,
             username,
-            country,
+            countryId: country,
             password,
         }
+
+        console.log(User)
 
         setLoading(true)
 
