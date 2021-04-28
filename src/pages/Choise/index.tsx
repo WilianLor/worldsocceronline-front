@@ -1,17 +1,32 @@
-import React from 'react'
-import styled from 'styled-components'
 import axios, { AxiosResponse } from  'axios'
 
-import Navbar from '../components/navbar'
+import Navbar from '../../components/Navbar'
 
-import President from '../images/president.png'
-import Coach from '../images/coach.png'
+import colors from '../../styles/colors'
 
-import config from '../config/api.json'
+import President from '../../images/president.png'
+import Coach from '../../images/coach.png'
 
-import {useDispatch, useSelector} from 'react-redux'
-import { UserState } from '../store/userReducer'
-import { login } from '../store/actions'
+import config from '../../config/api.json'
+
+import {
+    useDispatch, 
+    useSelector
+} from 'react-redux'
+
+import { UserState } from '../../store/userReducer'
+import { login } from '../../store/actions'
+
+import { 
+    Body, 
+    Button, 
+    Image, 
+    ChoisePage, 
+    ContentText, 
+    Title, 
+    TitleContent, 
+    TitleText 
+} from './styles'
 
 interface Token {
     token: string
@@ -19,9 +34,10 @@ interface Token {
 
 const Choise: React.FC = () => {
 
+    
     const dispatch = useDispatch()
     const infos = useSelector<UserState, Token>(state => ({token: state.token}))
-
+    console.log(infos)
     const data = {}
 
     const createPresident = () => {
@@ -31,8 +47,8 @@ const Choise: React.FC = () => {
       
         axios.post(config.baseUrl + '/create/president', data, header).then((response: AxiosResponse) => {  
             
-            window.location.href = "/findteam"
             dispatch(login(response.data.data))
+            window.location.href = "/findteam"
     
         }).catch(e => {
             console.log('erro: '+e)
@@ -46,8 +62,8 @@ const Choise: React.FC = () => {
       
         axios.post(config.baseUrl + '/create/coach',  data, header).then((response: AxiosResponse) => {
               
-            window.location.href = "/findteam"
             dispatch(login(response.data.data))
+            window.location.href = "/findteam"
 
         }).catch(e => {
             console.log('erro'+e)
@@ -55,7 +71,7 @@ const Choise: React.FC = () => {
     }
 
     document.title = 'WSO | Escolha'
-    document.body.style.background = "#121214"
+    document.body.style.background = colors.black
     return (
         <Body>
             <Navbar /> 
@@ -94,75 +110,5 @@ const Choise: React.FC = () => {
         </Body>
     )
 }
-
-const Body = styled.div`
-    display: flex;
-    flex-direction: column;
-`
-
-const ChoisePage = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    margin-top: 5vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-
-    @media (max-width: 720px) {
-        & {
-            flex-direction: column;        
-        }
-    }
-`
-
-const Button = styled.button`
-    cursor: pointer;
-    height: 80vh;
-    width: 46vw;
-    border-radius: 0.625rem 0.625rem 0 0;
-    border-bottom: 0.125rem solid #04D361;
-    transition: .4s ease-in;
-    background-color: #202024;
-
-    @media (max-width: 720px) {
-        & {
-            width: 92vw;
-            margin-bottom: 1rem;        
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-    }
-
-    &:hover {
-        margin-top: 0.625rem;
-        border: 0.125rem solid #04D361;
-    }
-`
-
-const Image = styled.img`
-    width: ${props => props.width};
-    margin-bottom: 1.25rem;
-`
-
-const TitleContent = styled.div`
-    margin-bottom: 0.625rem;
-`
-
-const Title = styled.h1`
-    font-size: 2.25rem;
-    color: #E1E1E6;
-`
-
-const TitleText = styled.p`
-    color: #04D361;
-    font-weight: 600;
-`
-
-const ContentText = styled.p`
-    font-size: 1rem;
-    color: #CCCCCC;
-    line-height: 1.875rem;
-`
 
 export default Choise

@@ -42,13 +42,7 @@ export const userReducer = (state:UserState = initialState, action: Action) => {
                 }
             }
             case "LOGOUT": {
-                return {
-                    ...state,
-                    isLogged: false,
-                    token: action.payload.token,
-                    profession: action.payload.profession,
-                    user: action.payload.user,
-                }
+                return state = initialState 
             }
             case "VALIDATE": {
                 return {

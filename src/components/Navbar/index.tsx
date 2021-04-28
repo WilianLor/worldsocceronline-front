@@ -1,12 +1,25 @@
 import React from 'react'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import styled from 'styled-components'
-import { useSelector, useDispatch } from 'react-redux'
-import {UserState} from '../store/userReducer'
-import {logout} from '../store/actions'
+import { 
+  makeStyles, 
+  Theme, 
+  createStyles 
+} from '@material-ui/core/styles'
+
+import { 
+  useSelector, 
+  useDispatch 
+} from 'react-redux'
+
+import {UserState} from '../../store/userReducer'
+import {logout} from '../../store/actions'
+
+import colors from '../../styles/colors'
+
+import { ButtonSvg } from './styles'
 
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import AppBar from '@material-ui/core/AppBar'
+import NotificationCard from '../NotificationCard'
 
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -23,10 +36,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
-import PopupState, { bindToggle, bindPopper } from 'material-ui-popup-state';
+import PopupState, { 
+  bindToggle, 
+  bindPopper 
+} from 'material-ui-popup-state';
 import Button from '@material-ui/core/Button';
 
-import IconButton from '@material-ui/core/IconButton'
 import MenuItem from '@material-ui/core/MenuItem'
 import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
@@ -42,7 +57,6 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import SearchIcon from '@material-ui/icons/Search';
-import VideogameAssetIcon from '@material-ui/icons/VideogameAsset';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
@@ -51,7 +65,7 @@ import AddIcon from '@material-ui/icons/Add';
 import CancelIcon from '@material-ui/icons/Cancel';
 import StorageIcon from '@material-ui/icons/Storage';
 import PersonIcon from '@material-ui/icons/Person';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import IconButton from '@material-ui/core/IconButton'
 
   interface Infos {
     profession: String,
@@ -70,7 +84,6 @@ const NavBar:React.FC = () => {
   const dispatch = useDispatch()
 
   const onLogout = () => {
-    window.location.href = "/login"
     dispatch(logout())
   }
 
@@ -90,16 +103,13 @@ const NavBar:React.FC = () => {
         boxShadow: "none"
       }
     },
-    deleteIcon: {
-      color: "#F44336",
-    },
     typography: {
       padding: theme.spacing(2),
     },
     menu: {
       "& .MuiPaper-root": {
-        backgroundColor: "#202024",
-        color: "#E1E1E6"
+        backgroundColor: colors.dark,
+        color: colors.lightGray
       },
     },
     list: {
@@ -168,11 +178,6 @@ const [state, setState] = React.useState({
     route: ""
   },
   {
-    title: "Balanço do clube",
-    icon: <AttachMoneyIcon/>,
-    route: ""
-  },
-  {
     title: "Diretoría",
     icon: <SupervisorAccountIcon/>,
     route: ""
@@ -183,14 +188,14 @@ const [state, setState] = React.useState({
     route: ""
   },
   {
-    title: "Amistosos",
-    icon: <VideogameAssetIcon/>,
-    route: ""
+    title: "Negociações",
+    icon: <AutorenewIcon/>,
+    route: "/coachtenders"
   },
   {
     title: "Buscar time",
     icon: <SearchIcon/>,
-    route: ""
+    route: "/findteam"
   }
 ],
 
@@ -222,7 +227,7 @@ const [state, setState] = React.useState({
   {
     title: "Buscar time",
     icon: <SearchIcon/>,
-    route: ""
+    route: "/findteam"
   },
   {
     title: "Balanço do clube",
@@ -230,14 +235,14 @@ const [state, setState] = React.useState({
     route: ""
   },
   {
-    title: "Tranferências",
+    title: "Negociações com Treinadores",
     icon: <AutorenewIcon/>,
-    route: ""
+    route: "/coachtenders"
   },
   {
     title: "Buscar Treinador",
     icon: <SearchIcon/>,
-    route: ""
+    route: "/findcoach"
   },
   {
     title: "Funcionário",
@@ -246,7 +251,19 @@ const [state, setState] = React.useState({
   },
 ],
 
-noTeamList: [{
+coachWithoutTeam: [{
+  title: "Buscar time",
+  icon: <SearchIcon/>,
+  route: "/findteam"
+  },
+  {
+    title: "Negociações com Times",
+    icon: <AutorenewIcon/>,
+    route: "/coachtenders"
+  },
+],
+
+presidentWithoutTeam: [{
   title: "Buscar time",
   icon: <SearchIcon/>,
   route: "/findteam"
@@ -280,7 +297,11 @@ const whatIsTheList = ():list  => {
     return state.noProfessionList
   }
   else if(userInfos.teamId === ""){
-    return state.noTeamList
+    if(userInfos.profession === "President"){
+      return state.presidentWithoutTeam
+    } else {
+      return state.coachWithoutTeam
+    }
   }
   else if (userInfos.profession === "Coach"){
     return state.coachWithTeamList
@@ -296,13 +317,13 @@ function SwipeableTemporaryDrawer() {
 
   const list = () => (
     <div
-      style={{backgroundColor: "#202024",}}
+      style={{backgroundColor: colors.dark}}
       className={clsx(classes.list)}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <Typography className={classes.title} variant="h6" noWrap style={{color: "#04D361", display: "flex", alignItems: "center", justifyContent: "center", marginTop: 20, marginBottom: 10 }}>
+      <Typography className={classes.title} variant="h6" noWrap style={{color: colors.green, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 20, marginBottom: 10 }}>
         {userInfos.username}
       </Typography>
       <Divider />
@@ -310,10 +331,10 @@ function SwipeableTemporaryDrawer() {
         {
         whatIsTheList().map((item, index) => (
           <ListItem button key={index} onClick={() => {window.location.href = item.route}}>
-            <ListItemIcon style={{color: "#04D361",}}>
+            <ListItemIcon style={{color: colors.green}}>
               {item.icon}
             </ListItemIcon>
-            <ListItemText primary={item.title}  style={{color: "#E1E1E6",}}/>
+            <ListItemText primary={item.title}  style={{color: colors.lightGray,}}/>
           </ListItem>
         ))}
       </List>
@@ -357,8 +378,13 @@ function SwipeableTemporaryDrawer() {
     
     const handleCloseConfirmLogout = () => {
       setOpen(false)
+      window.location.href = "/login"
       onLogout()
     };
+
+    const handleCloseMenu = () => {
+      setOpen(false)
+    }
 
     const goHome = () => {
       if(userInfos.profession === ""){
@@ -371,6 +397,10 @@ function SwipeableTemporaryDrawer() {
       }
       window.location.href = "/home"
       return;
+    }
+
+    const goToProfille = () => {
+      return window.location.href = "/userprofile"
     }
   
     const menuId = 'primary-search-account-menu';
@@ -385,9 +415,9 @@ function SwipeableTemporaryDrawer() {
         open={isMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={handleMenuClose} ><PersonIcon style={{marginRight: "10px", color: "#04D361"}}/>Perfil</MenuItem >
-        <MenuItem onClick={handleMenuClose} ><StorageIcon style={{marginRight: "10px", color: "#04D361"}}/>Meus dados</MenuItem>
-        <MenuItem onClick={handleClickOpenConfirmLogout} ><CancelIcon style={{marginRight: "10px", color: "#04D361"}}/>Sair</MenuItem>
+        <MenuItem onClick={goToProfille}><PersonIcon style={{marginRight: "10px", color: colors.green}}/>Perfil</MenuItem >
+        <MenuItem onClick={handleMenuClose} ><StorageIcon style={{marginRight: "10px", color: colors.green}}/>Meus dados</MenuItem>
+        <MenuItem onClick={handleClickOpenConfirmLogout} ><CancelIcon style={{marginRight: "10px", color: colors.green}}/>Sair</MenuItem>
       </Menu>
     );
 
@@ -402,11 +432,11 @@ function SwipeableTemporaryDrawer() {
             <DialogTitle id="alert-dialog-title" style={{marginBottom: "0px"}}>{"Quer mesmo sair?"}</DialogTitle>
             <DialogActions>
               
-              <IconButton onClick={handleCloseConfirmLogout} className={classes.alertButton} style={{color: "#F44336"}}>
-                <ButtonSvg width="80" height="81" viewBox="0 0 31.515 35.311"><path id="Noooo" d="M875.558,9903.624H862.806v-6.556l1.084-1.085,1.04,1.04v4.477h10.627v-19.125l8.5-4.251H864.93v6.472l-1.04,1.039-1.084-1.084V9876h25.5v27.624L875.558,9910Zm-11.667-10.8-3.875,3.875L858,9894.686l3.877-3.875L858,9886.934l2.017-2.015,3.875,3.875,3.877-3.875,1.99,2.042-3.85,3.85,3.875,3.875-2.015,2.018Z" transform="translate(-857.291 -9875.5)" fill="#F44336" stroke="rgba(0,0,0,0)" strokeWidth="1"></path></ButtonSvg>
+              <IconButton onClick={handleCloseMenu} className={classes.alertButton} style={{color: colors.red}}>
+                <ButtonSvg width="80" height="81" viewBox="0 0 31.515 35.311"><path id="Noooo" d="M875.558,9903.624H862.806v-6.556l1.084-1.085,1.04,1.04v4.477h10.627v-19.125l8.5-4.251H864.93v6.472l-1.04,1.039-1.084-1.084V9876h25.5v27.624L875.558,9910Zm-11.667-10.8-3.875,3.875L858,9894.686l3.877-3.875L858,9886.934l2.017-2.015,3.875,3.875,3.877-3.875,1.99,2.042-3.85,3.85,3.875,3.875-2.015,2.018Z" transform="translate(-857.291 -9875.5)" fill={colors.red} stroke="rgba(0,0,0,0)" strokeWidth="1"></path></ButtonSvg>
               </IconButton>
-              <IconButton onClick={handleCloseConfirmLogout} className={classes.alertButton} style={{color: "#04D361"}}>
-                <ButtonSvg width="80" height="81" viewBox="0 0 31.875 34"><path id="Sair" d="M-1067.666-128.647h-10.625V-131.6h10.625v-4.9l6.375,6.375-6.375,6.375Zm21.25-16.353v27.625l-12.75,6.375v-6.375h-12.75v-8.5h2.125v6.375h10.625v-19.125l8.5-4.25h-19.125v8.5h-2.125V-145Z" transform="translate(1078.291 145)" fill="#04D361"></path></ButtonSvg>
+              <IconButton onClick={handleCloseConfirmLogout} className={classes.alertButton} style={{color: colors.green}}>
+                <ButtonSvg width="80" height="81" viewBox="0 0 31.875 34"><path id="Sair" d="M-1067.666-128.647h-10.625V-131.6h10.625v-4.9l6.375,6.375-6.375,6.375Zm21.25-16.353v27.625l-12.75,6.375v-6.375h-12.75v-8.5h2.125v6.375h10.625v-19.125l8.5-4.25h-19.125v8.5h-2.125V-145Z" transform="translate(1078.291 145)" fill={colors.green}></path></ButtonSvg>
               </IconButton>
             </DialogActions>
           </Dialog>
@@ -414,10 +444,10 @@ function SwipeableTemporaryDrawer() {
   
     return (
       <div className={classes.grow}>
-        <AppBar position="static" style={{backgroundColor: "#202024", color: "#04D361"}}>
+        <AppBar position="static" style={{backgroundColor: colors.dark, color: colors.green}}>
           <Toolbar>
             <IconButton
-              style={{color: "#04D361"}}
+              style={{color: colors.green}}
               edge="start"
               className={classes.menuButton}
               color="inherit"
@@ -426,7 +456,7 @@ function SwipeableTemporaryDrawer() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.title} variant="h6" noWrap style={{color: "#04D361", fontSize: 12}}>
+            <Typography className={classes.title} variant="h6" noWrap style={{color: colors.green, fontSize: 12}}>
               W O R L D S O C C E R O N L I N E
             </Typography>
             <div className={classes.grow} />
@@ -445,55 +475,13 @@ function SwipeableTemporaryDrawer() {
                     {({ TransitionProps }) => (
                       <Fade {...TransitionProps} timeout={350}>
                         <Paper>
-                          <Typography className={classes.typography} style={{color: "#04D361"}}>Notificações</Typography>
+                          <Typography className={classes.typography} style={{color: colors.green}}>Notificações</Typography>
                           <Divider />
-                          <Notification>
-                            <NotificationContent>
-                              <NotificationTitle>
-                                Teste
-                              </NotificationTitle>
-                              <NotificationText>
-                                Teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste
-                              </NotificationText>
-                            </NotificationContent>
-                            <DeleteNotification>
-                              <IconButton style={{color: "#F44336"}}>
-                                <DeleteForeverIcon className={classes.deleteIcon}/>
-                              </IconButton>
-                            </DeleteNotification>
-                          </Notification>
+                          <NotificationCard id="djfsfg373rywg" title="Notificação" text="O conteúdo da notificação."/>
                           <Divider />
-                          <Notification>
-                            <NotificationContent>
-                              <NotificationTitle>
-                                Teste
-                              </NotificationTitle>
-                              <NotificationText>
-                                Teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste
-                              </NotificationText>
-                            </NotificationContent>
-                            <DeleteNotification>
-                              <IconButton style={{color: "#F44336"}}>
-                                <DeleteForeverIcon className={classes.deleteIcon}/>
-                              </IconButton>
-                            </DeleteNotification>
-                          </Notification>
+                          <NotificationCard id="gkfgjdf8gdug9dfg" title="Notificação" text="O conteúdo da notificação fgsdgdfgdgdfg."/>
                           <Divider />
-                          <Notification>
-                            <NotificationContent>
-                              <NotificationTitle>
-                                Teste
-                              </NotificationTitle>
-                              <NotificationText>
-                                Teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste
-                              </NotificationText>
-                            </NotificationContent>
-                            <DeleteNotification>
-                                <IconButton style={{color: "#F44336"}}>
-                                  <DeleteForeverIcon className={classes.deleteIcon}/>
-                                </IconButton>
-                                </DeleteNotification>
-                          </Notification>
+                          <NotificationCard id="jfhs7834hgdfyr78" title="Notificação" text="O conteúdo da notificação."/>
                         </Paper>
                       </Fade>
                     )}
@@ -522,53 +510,10 @@ function SwipeableTemporaryDrawer() {
   return (
     <div>
       <PrimarySearchAppBar />
-        <SwipeableTemporaryDrawer />
+      <SwipeableTemporaryDrawer />
     </div>
   );
 }
-
-const Notification = styled.div`
-    width: 21.875rem;
-    height: 5rem;
-    display: flex;
-    flex-direction: row;
-    padding:0.3125rem;
-    margin: 0.625rem;
-    background-color: #202024;
-    border-radius: 0.25rem;
-  `
-  const NotificationContent = styled.div`
-    height: 5.625rem;
-    display: flex;
-    flex-direction: column;
-    margin-left: 0.625rem;
-  `
-
-  const NotificationTitle = styled.h1`
-    font-size: 1.0625rem;
-    margin-bottom: 0.9375rem;
-    color: #04D361;
-    font-weight: 400;
-  `
-  const NotificationText = styled.p`
-    font-size: 0.9375rem;
-    font-weight: 300;
-  `
-
-  const DeleteNotification = styled.button`
-    height: 0.875rem;
-    width: 3.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    cursor: pointer;
-  `
-
-  const ButtonSvg = styled.svg`
-    width: 9.375rem;
-    fill: ${props => props.colorInterpolation}
-  `
 
 export default NavBar
 

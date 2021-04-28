@@ -1,5 +1,8 @@
-import React from 'react';
-import {useSelector, useDispatch} from 'react-redux'
+import {
+  useSelector, 
+  useDispatch
+} from 'react-redux'
+
 import axios, { AxiosResponse } from 'axios'
 
 import config from './config/api.json'
@@ -8,7 +11,10 @@ import './styles/global.css'
 
 import Routes from './routes'
 import { UserState } from './store/userReducer';
-import { validateAction, logout } from './store/actions'
+import { 
+  validateAction, 
+  logout 
+} from './store/actions'
 
 interface ValidateInfos {
   token: string,
@@ -19,7 +25,12 @@ interface ValidateInfos {
 
 const App = () => {
 
-  const ValidateInfos = useSelector<UserState, ValidateInfos>(state => ({token: state.token, profession: state.profession, teamId: state.user.teamId, passwordVersion: state.user.passwordVersion}))
+  const ValidateInfos = useSelector<UserState, ValidateInfos>(state => ({
+    token: state.token, 
+    profession: state.profession, 
+    teamId: state.user.teamId, 
+    passwordVersion: state.user.passwordVersion
+  }))
 
   const dispatch = useDispatch()
 
