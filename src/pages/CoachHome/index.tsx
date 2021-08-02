@@ -1,32 +1,23 @@
-import Navbar from '../../components/Navbar'
-import { 
-  Body, 
-  HomePage, 
-  NextGame, 
-  Options, 
-  Option 
-} from './styles'
+import { Body, HomePage, NextGame, Options, Option } from "./styles";
+import React from "react";
+import colors from "../../styles/colors";
 
-import colors from '../../styles/colors'
-
-const homeCoach: React.FC = () => {
-
-  document.title = 'WSO | Home'
-  document.body.style.background = colors.black
+const CoachHome: React.FC = () => {
+  document.title = "WSO | Home";
+  document.body.style.background = colors.black;
   return (
     <Body>
-      <Navbar />
       <HomePage>
-        <NextGame>
-        </NextGame>
+        <NextGame to="#"></NextGame>
         <Options>
-          <Option />
-          <Option />
-          <Option />
+          <Option to="#"></Option>
+          <Option to="#"></Option>
+          <Option to="#"></Option>
+          <Option to="#"></Option>
         </Options>
       </HomePage>
     </Body>
   );
-}
+};
 
-export default homeCoach;
+export default CoachHome;

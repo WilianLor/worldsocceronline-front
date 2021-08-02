@@ -1,19 +1,12 @@
-import Navbar from '../../components/Navbar'
+import { Body, HomePage } from "./styles";
+import React from "react";
 
-import { 
-  Body, 
-  HomePage
-} from './styles'
-
-const homePresident: React.FC = () => {
+const PresidentHome: React.FC = () => {
   return (
     <Body>
-      <Navbar />
-      <HomePage>
-        president
-      </HomePage>
+      <HomePage>president</HomePage>
     </Body>
-  )
-}
+  );
+};
 
-export default homePresident;
+export default PresidentHome;

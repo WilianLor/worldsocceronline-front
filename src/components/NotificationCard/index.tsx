@@ -1,45 +1,40 @@
 import {
-    Notification,
-    NotificationContent,
-    NotificationTitle,
-    NotificationText,
-    DeleteNotification,
-} from './styles'
+  Notification,
+  NotificationContent,
+  NotificationTitle,
+  NotificationText,
+  DeleteNotification,
+} from "./styles";
 
-import colors from '../../styles/colors'
+import colors from "../../styles/colors";
 
-import IconButton from '@material-ui/core/IconButton'
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from '@material-ui/icons/Close';
 
 interface NotificationCardPorps {
-    id: string,
-    title: string,
-    text: string
+  id: string;
+  title: string;
+  text: string;
 }
 
 const NotificationCard = ({ id, title, text }: NotificationCardPorps) => {
+  const deleteNotification = () => {
+    return console.log(id);
+  };
 
-    const deleteNotification = () => {
-        return console.log(id)
-    }
+  return (
+    <Notification key={id}>
+      <NotificationContent>
+        <NotificationTitle>{title}</NotificationTitle>
+        <NotificationText>{text}</NotificationText>
+      </NotificationContent>
+      <DeleteNotification>
+        <IconButton style={{ color: colors.lightGray }} onClick={deleteNotification}>
+          <CloseIcon style={{ color: colors.lightGray, fontSize: '1.2rem' }}/>
+        </IconButton>
+      </DeleteNotification>
+    </Notification>
+  );
+};
 
-    return (
-        <Notification key={id}>
-            <NotificationContent>
-                <NotificationTitle>
-                    { title }
-                </NotificationTitle>
-                <NotificationText>
-                    { text }
-                </NotificationText>
-            </NotificationContent>
-                <DeleteNotification>
-                    <IconButton style={{color: colors.red}} onClick={deleteNotification}>
-                        <DeleteForeverIcon style={{color: colors.red}}/>
-                    </IconButton>
-                </DeleteNotification>
-        </Notification>
-    )
-}
-
-export default NotificationCard
+export default NotificationCard;
