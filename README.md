@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="./src/assets/images/Logo.png">
+    <img src="./src/images/Logo.png">
 </h1>
 
 # [**Acessar (Versão antiga)**](https://worldsocceronline.vercel.app/)
